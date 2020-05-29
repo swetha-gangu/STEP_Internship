@@ -16,8 +16,8 @@
  * Adds a random greeting to the page.
  */
 function addRandomQuote() {
-  const quotes =
-      ['"Sometimes I\'ll start a sentence and I don\'t even know where it\'s going. I just hope I find it along the way." — Michael Scott',
+    const quotes =
+        ['"Sometimes I\'ll start a sentence and I don\'t even know where it\'s going. I just hope I find it along the way." — Michael Scott',
         '"I talk a lot, so I\'ve learned to just tune myself out..." — Kelly Kapoor',
         ' "I am Beyonce always." — Michael Scott',
         '"I am running away from my responsibilities and it feels good." — Michael Scott',
@@ -44,23 +44,24 @@ function addRandomQuote() {
         '"I just wanna lie on the beach and eat hot dogs. That\'s all I\'ve ever wanted." — Kevin Malone',
         '"That\'s what she said." — Michael Scott']
 
-  // Pick a random quote.
-  const quote = quotes[Math.floor(Math.random() * quotes.length)];
+    // Pick a random quote.
+    const quote = quotes[Math.floor(Math.random() * quotes.length)];
 
-  // Add it to the page.
-  const quoteContainer = document.getElementById('quote-container');
-  quoteContainer.innerText = quote;
+    // Add it to the page.
+    const quoteContainer = document.getElementById('quote-container');
+    quoteContainer.innerText = quote;
 }
 
+//https://www.w3schools.com/howto/howto_js_tab_img_gallery.asp
 function placeInContainer(imgs) {
-  // Get the expanded image
-  var expandImg = document.getElementById("expandedImg");
-  // Get the image text
-  var imgText = document.getElementById("imgtext");
-  // Use the same src in the expanded image as the image being clicked on from the grid
-  expandImg.src = imgs.src;
-  // Use the value of the alt attribute of the clickable image as text inside the expanded image
-  imgText.innerHTML = imgs.alt;
-  // Show the container element (hidden with CSS)
-  expandImg.parentElement.style.display = "block";
+    // Get the expanded image
+    var expandImg = document.getElementById("expandedImg");
+    // Get the image text
+    var imgText = document.getElementById("imgtext");
+    // Use the same src in the expanded image as the image being clicked on from the grid
+    expandImg.src = imgs.src;
+    // Use the value of the alt attribute of the clickable image as text inside the expanded image
+    imgText.innerHTML = imgs.alt;
+    // Show the container element (hidden with CSS)
+    expandImg.parentElement.style.display = "block";
 }

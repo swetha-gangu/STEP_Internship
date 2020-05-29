@@ -74,31 +74,33 @@ body {
 /* https://css-tricks.com/snippets/css/typewriter-effect/ */
 
 .typewriter {
-  color: #66FCF1;
-  font-family: monospace;
-  overflow: hidden; /* Ensures the content is not revealed until the animation */
-  border-right: .15em solid #66FCF1; /* The typwriter cursor */
-  white-space: nowrap; /* Keeps the content on a single line */
-  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
-  letter-spacing: .15em; /* Adjust as needed */
-  animation: 
+    color: #66FCF1;
+    font-family: monospace;
+    overflow: hidden; /* Ensures the content is not revealed until the animation */
+    border-right: .15em solid #66FCF1; /* The typwriter cursor */
+    white-space: nowrap; /* Keeps the content on a single line */
+    margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+    letter-spacing: .15em; /* Adjust as needed */
+    animation: 
     typing 3.5s steps(30, end),
     blink-caret .5s step-end infinite;
 }
 
 /* The typing effect */
 @keyframes typing {
-  from { width: 0 }
-  to { width: 100% }
+    from { width: 0 }
+    to { width: 100% }
 }
 
 /* The typewriter cursor effect */
 @keyframes blink-caret {
-  from, to { border-color: transparent }
-  50% { border-color: #66FCF1 }
+    from, to { border-color: transparent }
+    50% { border-color: #66FCF1 }
 }
 
+/* https://www.w3schools.com/howto/howto_js_tab_img_gallery.asp */
 /* design elements for the art gallery */
+
 .gallery {
     display: flex;
     flex-flow: row wrap;
@@ -106,20 +108,20 @@ body {
 }
 
 .row {
-  float: left;
-  width: 25%;
-  padding: 10px;
+    float: left;
+    width: 25%;
+    padding: 10px;
 }
 
 .row img {
-  opacity: 0.8;
-  cursor: pointer;
-  width: 100px; 
-  height: 130px; 
+    opacity: 0.8;
+    cursor: pointer;
+    width: 100px; 
+    height: 130px; 
 }
 
 .row img:hover {
-  opacity: 1;
+    opacity: 1;
 }
 
 .column {
@@ -130,36 +132,36 @@ body {
 
 /* Clear floats after the rows */
 .column:after {
-  content: "";
-  display: table;
-  clear: both;
+    content: "";
+    display: table;
+    clear: both;
 }
 
 /* The expanding image container (positioning is needed to position the close button and the text) */
 .container {
-  position: relative;
-  display: none;
-  width: 600px; 
-  align-content: right; 
-  float: right; 
-  height: 780px;
+    position: relative;
+    display: none;
+    width: 600px; 
+    align-content: right; 
+    float: right; 
+    height: 780px;
 }
 
 /* Expanding image text */
 #imgtext {
-  position: absolute;
-  bottom: 15px;
-  left: 15px;
-  color: white;
-  font-size: 20px;
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    color: white;
+    font-size: 20px;
 }
 
 /* Closable button inside the image */
 .closebtn {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  color: white;
-  font-size: 35px;
-  cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    color: white;
+    font-size: 35px;
+    cursor: pointer;
 }
