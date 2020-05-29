@@ -1,5 +1,5 @@
 body {
-    background: rgb(107, 100, 100);
+    background: #0B0C10;
     padding-top: 5em;
     display: flex;
     flex-flow: column wrap;
@@ -12,7 +12,7 @@ body {
     font-family:'Roboto',sans-serif;
     font-weight:700;
     font-size: large; 
-    color: yellow;
+    color: #C5C6C7;
     text-align:center;
     transition: all 0.2s;
 }
@@ -22,14 +22,14 @@ body {
     text-decoration:none;
     font-family:'Roboto',sans-serif;
     font-weight:300;
-    color:#FFFFFF;
+    color: white;
     text-align:center;
     transition: all 0.2s;
 }
 
 .block {
-    background-color: #333;
-    border: 15px solid orange; 
+    background-color: #1F2833;
+    border: 15px solid #C5C6C7; 
     padding: 50px;
     margin: 20px;
     margin-left: auto;
@@ -48,20 +48,20 @@ body {
 .button1 {
     display: inline-block;
     padding:0.35em 1.2em;
-    border:0.1em solid #FFFFFF;
+    border:0.1em solid #45A29E;
     margin:0 0.3em 0.3em 0;
     border-radius:0.12em;
     box-sizing: border-box;
     text-decoration:none;
     font-family:'Roboto',sans-serif;
     font-weight:300;
-    color:#FFFFFF;
+    color: white;
     text-align:center;
     transition: all 0.2s;
 }
 
 .button1:hover{
-    color:#000000;
+    color:#0B0C10;
     background-color:#FFFFFF;
 }
 @media all and (max-width:30em){
@@ -73,12 +73,11 @@ body {
 
 /* https://css-tricks.com/snippets/css/typewriter-effect/ */
 
-/* DEMO-SPECIFIC STYLES */
 .typewriter {
-  color: #fff;
+  color: #66FCF1;
   font-family: monospace;
   overflow: hidden; /* Ensures the content is not revealed until the animation */
-  border-right: .15em solid orange; /* The typwriter cursor */
+  border-right: .15em solid #66FCF1; /* The typwriter cursor */
   white-space: nowrap; /* Keeps the content on a single line */
   margin: 0 auto; /* Gives that scrolling effect as the typing happens */
   letter-spacing: .15em; /* Adjust as needed */
@@ -96,7 +95,7 @@ body {
 /* The typewriter cursor effect */
 @keyframes blink-caret {
   from, to { border-color: transparent }
-  50% { border-color: orange }
+  50% { border-color: #66FCF1 }
 }
 
 /* design elements for the art gallery */
