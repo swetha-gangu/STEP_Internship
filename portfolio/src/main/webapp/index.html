@@ -20,7 +20,7 @@
     </div>
 
     <div class="block">
-        <div class="typewriter"> <h1>About me</h1> </div>
+        <div class="typewriter"> <h1>about me</h1> </div>
         <p> I'm a student at CMU studying AI and human-computer interaction. I've spent the last two summers interning at Google. 
             Though I was born in Hyderabad, India, I grew up in the humid outskirts of the Houston area (more specifically - Sugar Land, TX). 
             Outside of school, I really enjoy reading, taking long walks, and embarking on culinary adventures with my mom. 
@@ -29,6 +29,7 @@
     </div>
 
     <div class="block">
+        <div class="typewriter"> <h1>coursework</h1> </div>
         <div class="button1" onclick="window.location.href='https://www.coursicle.com/cmu/courses/CS/15213/';">
             15-213 Introduction to Computer Systems</div>
         <div class="button1" onclick="window.location.href='https://www.coursicle.com/cmu/courses/MLG/10315/';">
@@ -47,6 +48,67 @@
             15-122 Principles of Imperative Computation</div>
         <div class="button1" onclick="window.location.href='https://www.coursicle.com/cmu/courses/CS/15112/';">
             15-112 Foundations of Programming</div>
+    </div>
+
+    <div class="block">
+        <div class="typewriter"> <h1>photo art and some creepy self-portraits</h1> </div>
+        <div class="gallery">
+            <!-- The grid: vertical images -->
+            <div class="column">
+                <div class="row">
+                    <img src=/images/brother.jpg 
+                            alt="drawing of my brother" 
+                            onclick="placeInContainer(this);">
+                </div>
+                <div class="row">
+                    <img src=/images/golden_gate.jpg 
+                            alt="golden gate bridge" 
+                            onclick="placeInContainer(this);">
+                </div>
+                <div class="row">
+                    <img src=/images/portrait_2.jpg 
+                            alt="self portrait" 
+                            onclick="placeInContainer(this);">
+                </div>
+                <div class="row">
+                    <img src=/images/portrait_3.jpg 
+                            alt="self portrait" 
+                            onclick="placeInContainer(this);">
+                </div>
+                <div class="row">
+                    <img src=/images/space.jpg 
+                            alt="space art" 
+                            onclick="placeInContainer(this);">
+                </div>
+                <div class="row">
+                    <img src=/images/boots.jpg 
+                            alt="drew on a picture of my boots" 
+                            onclick="placeInContainer(this);">
+                </div>
+                <div class="row">
+                    <img src=/images/window.jpg 
+                            alt="drew on a window" 
+                            onclick="placeInContainer(this);">
+                </div>
+                <div class="row">
+                    <img src=/images/tempura_portrait.jpg 
+                            alt="self portrait" 
+                            onclick="placeInContainer(this);">
+                </div>
+            </div>
+
+            <!-- expanding image container -->
+            <div class="container">
+                <!-- Close the image -->
+                <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+
+                <!-- Expanded image -->
+                <img id="expandedImg" style="width:100%">
+
+                <!-- Image text -->
+                <div id="imgtext"></div>
+            </div>
+        </div>
     </div>
 
   </body>
