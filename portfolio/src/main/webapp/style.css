@@ -1,9 +1,165 @@
-#content {
-  margin-left: auto;
-  margin-right: auto;
-  width: 650px;
+body {
+    background: #0B0C10;
+    padding-top: 5em;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
 }
 
-#greeting-container {
-  margin-top: 20px;
+.yellow-font {
+    margin-top: 20px;
+    text-decoration:none;
+    font-family:'Roboto',sans-serif;
+    font-weight:700;
+    font-size: large; 
+    color: #C5C6C7;
+    text-align:center;
+    transition: all 0.2s;
+}
+
+#quote-container {
+    margin-top: 20px;
+    text-decoration:none;
+    font-family:'Roboto',sans-serif;
+    font-weight:300;
+    color: white;
+    text-align:center;
+    transition: all 0.2s;
+}
+
+.block {
+    background-color: #1F2833;
+    border: 15px solid #C5C6C7; 
+    padding: 50px;
+    margin: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 900px;
+    color: white;
+    text-decoration:none;
+    font-family:'Roboto',sans-serif;
+    font-weight:300;
+    text-align:center;
+    transition: all 0.2s;
+}
+
+/*https://fdossena.com/?p=html5cool/buttons/i.frag*/
+
+.button1 {
+    display: inline-block;
+    padding:0.35em 1.2em;
+    border:0.1em solid #45A29E;
+    margin:0 0.3em 0.3em 0;
+    border-radius:0.12em;
+    box-sizing: border-box;
+    text-decoration:none;
+    font-family:'Roboto',sans-serif;
+    font-weight:300;
+    color: white;
+    text-align:center;
+    transition: all 0.2s;
+}
+
+.button1:hover{
+    color:#0B0C10;
+    background-color:#FFFFFF;
+}
+@media all and (max-width:30em){
+    .button1{
+        display:block;
+        margin:0.4em auto;
+    }
+}
+
+/* https://css-tricks.com/snippets/css/typewriter-effect/ */
+.typewriter {
+    color: #66FCF1;
+    font-family: monospace;
+    overflow: hidden; /* Ensures the content is not revealed until the animation */
+    border-right: .15em solid #66FCF1; /* The typwriter cursor */
+    white-space: nowrap; /* Keeps the content on a single line */
+    margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+    letter-spacing: .15em; /* Adjust as needed */
+    animation: 
+    typing 3.5s steps(30, end),
+    blink-caret .5s step-end infinite;
+}
+
+/* The typing effect */
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: #66FCF1 }
+}
+
+/* https://www.w3schools.com/howto/howto_js_tab_img_gallery.asp */
+/* design elements for the art gallery */
+.gallery {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+.row {
+    float: left;
+    width: 25%;
+    padding: 10px;
+}
+
+.row img {
+    opacity: 0.8;
+    cursor: pointer;
+    width: 100px; 
+    height: 130px; 
+}
+
+.row img:hover {
+    opacity: 1;
+}
+
+.column {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: left;
+}
+
+/* Clear floats after the rows */
+.column:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* The expanding image container (positioning is needed to position the close button and the text) */
+.container {
+    position: relative;
+    display: none;
+    width: 600px; 
+    align-content: right; 
+    float: right; 
+    height: 780px;
+}
+
+/* Expanding image text */
+#imgtext {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    color: white;
+    font-size: 20px;
+}
+
+/* Closable button inside the image */
+.closebtn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    color: white;
+    font-size: 35px;
+    cursor: pointer;
 }

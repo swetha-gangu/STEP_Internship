@@ -2,17 +2,124 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>My Portfolio</title>
+    <title>Swetha Gangu</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
   </head>
   <body>
-    <div id="content">
-      <h1>My Portfolio</h1>
-      <p>This is my portfolio.</p>
-      <p>Click here to get a random message:</p>
-      <button onclick="addRandomGreeting()">Hello</button>
-      <div id="greeting-container"></div>
+    
+    <div class="block">
+        <div class="typewriter"> <h1>Swetha Gangu</h1> </div>
+        <div class="yellow-font">Artificial Intelligence @ Carnegie Mellon University</div>
+        <img src=/images/prof_pic.jpg 
+            alt="Swetha Gangu" 
+            width="185" 
+            height="200"> 
+        <!-- Container which will hold the quote -->
+        <div id="quote-container" onclick="addRandomQuote()">
+            Click to change the quote!
+        </div>
     </div>
+
+    <div class="block">
+        <div class="typewriter"> <h1>about me</h1> </div>
+        <p> I'm a student at CMU studying AI and human-computer interaction. I've spent the last two summers interning at Google. 
+            Though I was born in Hyderabad, India, I grew up in the humid outskirts of the Houston area (more specifically - Sugar Land, TX). 
+            Outside of school, I really enjoy reading, taking long walks, and embarking on culinary adventures with my mom. 
+            I also greatly enjoy playing games with family and friends - my current favorite being Secret Hitler.
+        </p>
+    </div>
+
+    <div class="block">
+        <div class="typewriter"> <h1>coursework</h1> </div>
+        <div class="button1" onclick="window.location.href='http://www.cs.cmu.edu/afs/cs/academic/class/15213-s20/www/';">
+            15-213 Introduction to Computer Systems</div>
+        <div class="button1" onclick="window.location.href='https://www.cs.cmu.edu/~10315/';">
+            10-315 Introduction to Machine Learning</div>
+        <div class="button1" onclick="window.location.href='http://www.cs.cmu.edu/afs/cs/academic/class/15210-s19/f19_www/';">
+            15-210 Parallel and Sequential Data Structures and Algorithms</div>
+        <div class="button1" onclick="window.location.href='http://www.cs.cmu.edu/~charlie/courses/17-214/2019-fall/';">
+            17-214 Principles of Software Construction</div>
+        <div class="button1" onclick="window.location.href='http://www.cs.cmu.edu/~15150/';">
+            15-150 Functional Programming</div>
+        <div class="button1" onclick="window.location.href='http://www.cs.cmu.edu/~./15281/';">
+            15-281 Artificial Intelligence: Representation and Problem Solving</div>
+        <div class="button1" onclick="window.location.href='http://www.math.cmu.edu/~jmackey/151_128/welcome.html';">
+            15-151 Math Foundations of Computer Science</div>
+        <div class="button1" onclick="window.location.href='http://www.cs.cmu.edu/~15122-archive/s19/syllabus.shtml';">
+            15-122 Principles of Imperative Computation</div>
+        <div class="button1" onclick="window.location.href='http://www.krivers.net/15112-f18/schedule.html';">
+            15-112 Foundations of Programming</div>
+    </div>
+
+    <div class="block">
+        <div class="typewriter"> <h1>photo art and some creepy self-portraits</h1> </div>
+        <div class="gallery">
+            <!-- The grid: vertical images -->
+            <div class="column">
+                <div class="row">
+                    <img src=/images/brother.jpg 
+                            alt="drawing of my brother" 
+                            onclick="placeInContainer(this);">
+                </div>
+                <div class="row">
+                    <img src=/images/golden_gate.jpg 
+                            alt="golden gate bridge" 
+                            onclick="placeInContainer(this);">
+                </div>
+                <div class="row">
+                    <img src=/images/portrait_2.jpg 
+                            alt="self portrait" 
+                            onclick="placeInContainer(this);">
+                </div>
+                <div class="row">
+                    <img src=/images/portrait_3.jpg 
+                            alt="self portrait" 
+                            onclick="placeInContainer(this);">
+                </div>
+                <div class="row">
+                    <img src=/images/space.jpg 
+                            alt="space art" 
+                            onclick="placeInContainer(this);">
+                </div>
+                <div class="row">
+                    <img src=/images/boots.jpg 
+                            alt="drew on a picture of my boots" 
+                            onclick="placeInContainer(this);">
+                </div>
+                <div class="row">
+                    <img src=/images/window.jpg 
+                            alt="drew on a window" 
+                            onclick="placeInContainer(this);">
+                </div>
+                <div class="row">
+                    <img src=/images/tempura_portrait.jpg 
+                            alt="self portrait" 
+                            onclick="placeInContainer(this);">
+                </div>
+            </div>
+
+            <!-- expanding image container -->
+            <div class="container">
+                <!-- Close the image -->
+                <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+
+                <!-- Expanded image -->
+                <img id="expandedImg" style="width:100%">
+
+                <!-- Image text -->
+                <div id="imgtext"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="block">
+        <div class="typewriter"> <h1>connect with me</h1> </div>
+        <div class="button1" onclick="window.location.href='https://www.linkedin.com/in/swetha-gangu-34748b149/';">
+            LinkedIn</div>
+        <div class="button1" onclick="window.location.href='https://github.com/swetha-gangu/';">
+            GitHub</div>
+    </div>
+
   </body>
 </html>
