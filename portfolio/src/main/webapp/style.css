@@ -72,7 +72,6 @@ body {
 }
 
 /* https://css-tricks.com/snippets/css/typewriter-effect/ */
-
 .typewriter {
     color: #66FCF1;
     font-family: monospace;
@@ -100,7 +99,6 @@ body {
 
 /* https://www.w3schools.com/howto/howto_js_tab_img_gallery.asp */
 /* design elements for the art gallery */
-
 .gallery {
     display: flex;
     flex-flow: row wrap;
