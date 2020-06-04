@@ -24,16 +24,24 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
+    ArrayList<String> messages; 
 
-  @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    ArrayList<String> messages = new ArrayList<String>(); 
-    messages.add("message1");
-    messages.add("message2");
-    messages.add("message3");
-    Gson gson = new Gson();
-    String newStr = gson.toJson(messages);
-    response.setContentType("application/json;");
-    response.getWriter().println(newStr);
-  }
+    @Override
+    public void init(){
+        messages = new ArrayList<>(); 
+    }
+
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        Gson gson = new Gson();
+        String newStr = gson.toJson(messages);
+        response.setContentType("application/json;");
+        response.getWriter().println(newStr);
+    }
+
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException{
+        messages.add(request.getParameter("comment")); 
+        response.sendRedirect("/index.html");
+    }
 }

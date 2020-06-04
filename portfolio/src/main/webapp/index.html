@@ -122,8 +122,13 @@
     </div>
 
     <div class="block">
-        <div class="typewriter"> <h1>message</h1> </div>
-        <div class="button1" onclick="getContent()">fetch message!</div>
+        <div class="typewriter"> <h1>comments</h1> </div>
+        <div class="yellow-font">leave me a comment</div>
+        <form action="/data" method="POST">
+            <input type="text" id="comment" name="comment"><br>
+            <input type="submit"/>
+        </form>
+        <div class="button1" onclick="getContent()">show previous comments</div>
         <div id="message"></div>
     </div>
 
