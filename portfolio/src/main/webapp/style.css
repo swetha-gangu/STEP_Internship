@@ -27,6 +27,16 @@ body {
     transition: all 0.2s;
 }
 
+#message {
+    margin-top: 20px;
+    text-decoration:none;
+    font-family:'Roboto',sans-serif;
+    font-weight:300;
+    color: white;
+    text-align:center;
+    transition: all 0.2s;
+}
+
 .block {
     background-color: #1F2833;
     border: 15px solid #C5C6C7; 

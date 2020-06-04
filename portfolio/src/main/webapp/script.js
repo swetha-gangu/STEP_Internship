@@ -62,3 +62,19 @@ function placeInContainer(imgs) {
     // Show the container element (hidden with CSS)
     expandImg.parentElement.style.display = "block";
 }
+
+function getContent() {
+    function getMessage(message) {
+        messageHolder = document.createElement("P").innerText = message;
+        return messageHolder  
+    }
+
+    fetch('/data').then(response => response.json()).then((messages) => {
+        const container = document.getElementById('message');
+        var i;  
+        for (i=0; i<messages.length; i++) {
+            messageHolder = getMessage(messages[i] + '\n'); 
+            container.append(messageHolder)
+        }
+    });
+}
