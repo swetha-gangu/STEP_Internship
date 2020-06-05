@@ -64,17 +64,16 @@ function placeInContainer(imgs) {
 }
 
 function getContent() {
-    function getMessage(message) {
-        messageHolder = document.createElement("P").innerText = message;
-        return messageHolder  
+    let getMessage = (text) => {
+        const liElement = document.createElement('li');
+        liElement.innerText = text;
+        return liElement;
     }
 
     fetch('/data').then(response => response.json()).then((messages) => {
         const container = document.getElementById('message');
-        var i;  
-        for (i=0; i<messages.length; i++) {
-            messageHolder = getMessage(messages[i] + '\n'); 
-            container.append(messageHolder)
-        }
+        messages.forEach((comment) => {
+            container.appendChild(getMessage(comment.message));
+        });
     });
 }

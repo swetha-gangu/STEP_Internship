@@ -14,8 +14,16 @@
 
 package com.google.sps.servlets;
 
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.SortDirection;
 import com.google.gson.Gson;
+import com.google.sps.data.Comment;
 import java.util.ArrayList;
+import java.util.List;
 import java.io.IOException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,24 +32,44 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
-    ArrayList<String> messages; 
+    private static final String COMMENT = "comment";
+    private static final String ENTITY_TYPE = "Comment";
+    // ArrayList<String> messages; 
 
-    @Override
-    public void init(){
-        messages = new ArrayList<>(); 
-    }
+    // @Override
+    // public void init(){
+    //     messages = new ArrayList<>(); 
+    // }
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        Query query = new Query(ENTITY_TYPE); 
+        DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+        PreparedQuery results = datastore.prepare(query);
+
+        List<Comment> comments = new ArrayList<>();
+        for (Entity entity : results.asIterable()) {
+            long id = entity.getKey().getId();
+            String message = (String) entity.getProperty(COMMENT);
+
+            Comment comment = new Comment(id, message);
+            comments.add(comment);
+        }
+
         Gson gson = new Gson();
-        String newStr = gson.toJson(messages);
+
         response.setContentType("application/json;");
-        response.getWriter().println(newStr);
+        response.getWriter().println(gson.toJson(comments));
     }
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException{
-        messages.add(request.getParameter("comment")); 
+        // messages.add(request.getParameter("comment")); 
+        Entity commentEntity = new Entity(ENTITY_TYPE);
+        commentEntity.setProperty(COMMENT, request.getParameter(COMMENT));
+
+        DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+        datastore.put(commentEntity);
         response.sendRedirect("/index.html");
     }
 }
