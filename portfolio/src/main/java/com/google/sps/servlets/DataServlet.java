@@ -19,7 +19,7 @@ import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
-import com.google.appengine.api.datastore.Query.SortDirection;
+import com.google.appengine.api.datastore.FetchOptions;
 import com.google.gson.Gson;
 import com.google.sps.data.Comment;
 import java.util.ArrayList;
@@ -34,42 +34,54 @@ import javax.servlet.http.HttpServletResponse;
 public class DataServlet extends HttpServlet {
     private static final String COMMENT = "comment";
     private static final String ENTITY_TYPE = "Comment";
-    // ArrayList<String> messages; 
-
-    // @Override
-    // public void init(){
-    //     messages = new ArrayList<>(); 
-    // }
+    private static final String MAX_COMMENTS = "max_comments";
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        int maxComments = getMaxComments(request);
         Query query = new Query(ENTITY_TYPE); 
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-        PreparedQuery results = datastore.prepare(query);
-
+        List<Entity> results = datastore.prepare(query).
+            asList(FetchOptions.Builder.withLimit(maxComments));
         List<Comment> comments = new ArrayList<>();
-        for (Entity entity : results.asIterable()) {
+
+        for (Entity entity : results) {
             long id = entity.getKey().getId();
             String message = (String) entity.getProperty(COMMENT);
-
-            Comment comment = new Comment(id, message);
-            comments.add(comment);
+            comments.add(new Comment(id, message));
         }
 
-        Gson gson = new Gson();
-
         response.setContentType("application/json;");
-        response.getWriter().println(gson.toJson(comments));
+        response.getWriter().println(new Gson().toJson(comments));
     }
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException{
-        // messages.add(request.getParameter("comment")); 
         Entity commentEntity = new Entity(ENTITY_TYPE);
         commentEntity.setProperty(COMMENT, request.getParameter(COMMENT));
 
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
         datastore.put(commentEntity);
         response.sendRedirect("/index.html");
+    }
+
+    private int getMaxComments(HttpServletRequest request) {
+        String maxCommentsString = request.getParameter("max_comments");
+        // Convert the input to an int.
+        int maxComments;
+        try {
+            maxComments = Integer.parseInt(maxCommentsString);
+        } catch (NumberFormatException e) {
+            System.err.println("Could not convert to int: " + maxCommentsString);
+            return -1;
+        }
+
+        // Check that the input is non negative.
+        if (maxComments < 0) {
+            System.err.println("Number of comments is out of range: " + maxCommentsString);
+            return -1;
+        }
+
+        return maxComments;
     }
 }
