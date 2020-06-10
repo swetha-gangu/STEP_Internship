@@ -35,7 +35,6 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/login")
 public class LoginStatusServlet extends HttpServlet {
-    private static final String LOGGED_IN = "logged in";
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
