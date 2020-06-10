@@ -34,21 +34,28 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/login")
-login?continue=%2F
 public class LoginStatusServlet extends HttpServlet {
     private static final String LOGGED_IN = "logged in";
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setContentType("text/plain");
+        response.setContentType("text/html");
+
         UserService userService = UserServiceFactory.getUserService();
         if (userService.isUserLoggedIn()) {
-            System.out.println("LOGGED INNNNNNN"); 
-            response.getWriter().println(LOGGED_IN);
+            String userEmail = userService.getCurrentUser().getEmail();
+            String urlToRedirectToAfterUserLogsOut = "/index.html";
+            String logoutUrl = userService.createLogoutURL(urlToRedirectToAfterUserLogsOut);
+
+            response.getWriter().println("<p>Hello " + userEmail + "!</p>");
+            response.getWriter().println("<p>Logout <a href=\"" + logoutUrl + "\">here</a>.</p>");
+            response.getWriter().println("<a href='/comments.html'>link to comments page</a>");
         } else {
-            System.out.println("NOTTTT  LOGGED INNNNNNN"); 
-            String loginUrl = userService.createLoginURL("/");
-            response.getWriter().println(loginUrl);
+            String urlToRedirectToAfterUserLogsIn = "/comments.html";
+            String loginUrl = userService.createLoginURL(urlToRedirectToAfterUserLogsIn);
+
+            response.getWriter().println("<p>Hello stranger.</p>");
+            response.getWriter().println("<p>Login <a href=\"" + loginUrl + "\">here</a>.</p>");
         }
     }
 }

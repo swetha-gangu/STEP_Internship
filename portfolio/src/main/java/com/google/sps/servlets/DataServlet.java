@@ -14,6 +14,8 @@
 
 package com.google.sps.servlets;
 
+import com.google.appengine.api.users.UserService;
+import com.google.appengine.api.users.UserServiceFactory;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
@@ -33,6 +35,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
     private static final String COMMENT = "comment";
+    private static final String EMAIL = "email";
     private static final String ENTITY_TYPE = "Comment";
     private static final String MAX_COMMENTS = "max_comments";
 
@@ -41,6 +44,7 @@ public class DataServlet extends HttpServlet {
         int maxComments = getMaxComments(request);
         Query query = new Query(ENTITY_TYPE); 
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+
         List<Entity> results = datastore.prepare(query).
             asList(FetchOptions.Builder.withLimit(maxComments));
         List<Comment> comments = new ArrayList<>();
@@ -48,7 +52,8 @@ public class DataServlet extends HttpServlet {
         for (Entity entity : results) {
             long id = entity.getKey().getId();
             String message = (String) entity.getProperty(COMMENT);
-            comments.add(new Comment(id, message));
+            String email = (String) entity.getProperty(EMAIL); 
+            comments.add(new Comment(id, message, email));
         }
 
         response.setContentType("application/json;");
@@ -57,12 +62,21 @@ public class DataServlet extends HttpServlet {
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException{
+        UserService userService = UserServiceFactory.getUserService();
+        String userEmail = ""; 
+        if (userService.isUserLoggedIn()) {
+            userEmail = userService.getCurrentUser().getEmail();
+        } else {
+            System.err.println("User is not logged in");
+            return;
+        }
+
         Entity commentEntity = new Entity(ENTITY_TYPE);
         commentEntity.setProperty(COMMENT, request.getParameter(COMMENT));
-
+        commentEntity.setProperty(EMAIL, userEmail);
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
         datastore.put(commentEntity);
-        response.sendRedirect("/index.html");
+        response.sendRedirect("/comments.html");
     }
 
     private int getMaxComments(HttpServletRequest request) {

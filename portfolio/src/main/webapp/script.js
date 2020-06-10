@@ -75,7 +75,7 @@ function getContent() {
     fetch(`/data?max_comments=${max_comments}`).then(response => response.json()).then((messages) => {
         const container = document.getElementById('message');
         messages.forEach((comment) => {
-            container.appendChild(getMessage(comment.message));
+            container.appendChild(getMessage(comment.email + " : " + comment.message));
         });
     });
 }
@@ -83,24 +83,4 @@ function getContent() {
 function deleteComments(){
     // clear out comments stored in Datastore and write to page 
     fetch(new Request("/delete-comments", {method: 'POST'})).then(getContent());
-}
-
-function showCommentForm(){
-    fetch("/login").then((status) => {
-        console.log(status.url);
-        if (status === "logged in"){
-            var form = document.getElementById("comment_form");
-            if (form.style.display === 'block'){
-                 form.style.display = 'none';
-            }  
-            else{
-                form.style.display = 'block';
-            }
-        }
-        else {
-            var loginURL = status.url; 
-            const url_box = document.getElementById('login-url');
-            url_box.innerText = loginURL;
-        }
-    }); 
 }
