@@ -62,3 +62,25 @@ function placeInContainer(imgs) {
     // Show the container element (hidden with CSS)
     expandImg.parentElement.style.display = "block";
 }
+
+function getContent() {
+    document.getElementById('message').innerHTML = "";
+    let max_comments = document.getElementById("max_comments").value;
+    let getMessage = (text) => {
+        const liElement = document.createElement('li');
+        liElement.innerText = text;
+        return liElement;
+    }
+
+    fetch(`/data?max_comments=${max_comments}`).then(response => response.json()).then((messages) => {
+        const container = document.getElementById('message');
+        messages.forEach((comment) => {
+            container.appendChild(getMessage(comment.message));
+        });
+    });
+}
+
+function deleteComments(){
+    // clear out comments stored in Datastore and write to page 
+    fetch(new Request("/delete-comments", {method: 'POST'})).then(getContent());
+}

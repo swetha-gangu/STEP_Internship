@@ -27,6 +27,16 @@ body {
     transition: all 0.2s;
 }
 
+#message {
+    margin-top: 20px;
+    text-decoration:none;
+    font-family:'Roboto',sans-serif;
+    font-weight:300;
+    color: white;
+    text-align:center;
+    transition: all 0.2s;
+}
+
 .block {
     background-color: #1F2833;
     border: 15px solid #C5C6C7; 
@@ -41,6 +51,8 @@ body {
     font-weight:300;
     text-align:center;
     transition: all 0.2s;
+    display: flex;
+    flex-flow: column wrap;
 }
 
 /*https://fdossena.com/?p=html5cool/buttons/i.frag*/
