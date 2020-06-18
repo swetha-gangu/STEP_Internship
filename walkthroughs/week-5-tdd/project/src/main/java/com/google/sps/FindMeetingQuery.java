@@ -16,6 +16,7 @@ package com.google.sps;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.List;
 import java.util.ArrayList;
@@ -28,6 +29,24 @@ public final class FindMeetingQuery {
         Collection<String> attendees = request.getAttendees(); 
         Collection<String> optional_attendees = request.getOptionalAttendees(); 
         long duration = request.getDuration(); 
+        
+        return getSlotsWithOptional(attendees, optional_attendees, duration, events);
+    }
+
+    private Collection<TimeRange> getSlotsWithOptional(Collection<String> attendees, Collection<String> optional_attendees, 
+    long duration, Collection<Event> events) {
+        if (attendees.isEmpty()) return getSlots(optional_attendees, duration, events); 
+
+        Collection<String> combined_attendees = new HashSet<>();
+        combined_attendees.addAll(attendees); 
+        combined_attendees.addAll(optional_attendees); 
+        Collection<TimeRange> combined_slots = getSlots(combined_attendees, duration, events); 
+
+        if (!combined_slots.isEmpty()) return combined_slots; 
+        else return getSlots(attendees, duration, events);
+    }
+
+    private Collection<TimeRange> getSlots(Collection<String> attendees, long duration, Collection<Event> events) {
         List<Event> list_events = new ArrayList<Event> (events);
         TimeRange beginning = TimeRange.fromStartEnd(TimeRange.START_OF_DAY, TimeRange.START_OF_DAY, false);
         Event last_event = new Event("Beginning", beginning, Collections.emptySet());
