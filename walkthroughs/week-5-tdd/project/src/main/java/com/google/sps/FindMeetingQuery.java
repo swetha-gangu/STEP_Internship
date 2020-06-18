@@ -38,12 +38,12 @@ public final class FindMeetingQuery {
         Collection<String> attendees = request.getAttendees(); 
         Collection<String> optional_attendees = request.getOptionalAttendees(); 
         long duration = request.getDuration(); 
-        
         return getSlotsWithOptional(attendees, optional_attendees, duration, events);
     }
 
     private Collection<TimeRange> getSlotsWithOptional(Collection<String> attendees, Collection<String> optional_attendees, 
     long duration, Collection<Event> events) {
+        // if no mandatory attendees, return slots for optional attendees 
         if (attendees.isEmpty()) {
             return getSlots(optional_attendees, duration, events); 
         }
@@ -53,10 +53,14 @@ public final class FindMeetingQuery {
         combined_attendees.addAll(optional_attendees); 
         Collection<TimeRange> combined_slots = getSlots(combined_attendees, duration, events); 
 
+        // check if slots are available for mandatory and optional attendees
+        // if not, return slots available for just mandatory attendees 
         if (!combined_slots.isEmpty()) {
             return combined_slots; 
         }
-        else return getSlots(attendees, duration, events);
+        else {
+            return getSlots(attendees, duration, events);
+        }
     }
 
     private Collection<TimeRange> getSlots(Collection<String> attendees, long duration, Collection<Event> events) {
@@ -71,6 +75,8 @@ public final class FindMeetingQuery {
         }
         int last_end = last_event.getWhen().end();
         int end_of_day = TimeRange.END_OF_DAY + 1;
+
+        // add slot from last event to end of day if there is enough space 
         if (duration <= (end_of_day - last_end)) {
             TimeRange final_slot = TimeRange.fromStartEnd(last_end, end_of_day, false); 
             slots.add(final_slot); 
@@ -80,6 +86,7 @@ public final class FindMeetingQuery {
 
     private Event addEvent(Event curr_event, Event last_event, Collection<TimeRange> slots, Collection<String> 
     attendees, long duration) {
+        // the event doesn't need to be scheduled around if none of the attendees are attending 
         if (!eventHasAttendee(attendees, curr_event)) {
             return last_event; 
         }
@@ -105,7 +112,9 @@ public final class FindMeetingQuery {
         if (curr_range.end() < last_range.end()) {
             return last_event; 
         }
-        else return curr_event; 
+        else {
+            return curr_event; 
+        }
     }
 
     private boolean eventHasAttendee(Collection<String> attendees, Event event) {
