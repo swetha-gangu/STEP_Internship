@@ -43,15 +43,15 @@ public class LoginStatusServlet extends HttpServlet {
         UserService userService = UserServiceFactory.getUserService();
         if (userService.isUserLoggedIn()) {
             String userEmail = userService.getCurrentUser().getEmail();
-            String urlToRedirectToAfterUserLogsOut = "/index.html";
-            String logoutUrl = userService.createLogoutURL(urlToRedirectToAfterUserLogsOut);
+            String logoutRedirectUrl = "/index.html";
+            String logoutUrl = userService.createLogoutURL(logoutRedirectUrl);
 
             response.getWriter().println("<p>Hello " + userEmail + "!</p>");
             response.getWriter().println("<p>Logout <a href=\"" + logoutUrl + "\">here</a>.</p>");
             response.getWriter().println("<a href='/comments.html'>link to comments page</a>");
         } else {
-            String urlToRedirectToAfterUserLogsIn = "/comments.html";
-            String loginUrl = userService.createLoginURL(urlToRedirectToAfterUserLogsIn);
+            String loginRedirectUrl = "/comments.html";
+            String loginUrl = userService.createLoginURL(loginRedirectUrl);
 
             response.getWriter().println("<p>Hello stranger.</p>");
             response.getWriter().println("<p>Login <a href=\"" + loginUrl + "\">here</a>.</p>");
