@@ -123,21 +123,8 @@
 
     <div class="block">
         <div class="typewriter"> <h1>comments</h1> </div>
-        <form action="/data" method="POST">
-            <label for="comment">Comment:</label><br>
-            <input type="text" id="comment" name="comment"><br>
-            <input type="submit"/>
-        </form>
-        <label for="max_comments">Max comments you would like to see: </label>
-        <select name="max_comments" id="max_comments" onchange="getContent()">
-            <option value="5" selected>5</option>
-            <option value="10">10</option>
-            <option value="20">20</option>
-            <option value="30">30</option>
-        </select>
-        <div class="button1" onclick="getContent()">show previous comments</div>
-        <div class="button1" onclick="deleteComments()">delete comments</div>
-        <div id="message"></div>
+        <div class="button1" onclick="window.location.href='/login';">
+            click here to log into comments page</div>
     </div>
 
   </body>

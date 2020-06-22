@@ -75,7 +75,9 @@ function getContent() {
     fetch(`/data?max_comments=${max_comments}`).then(response => response.json()).then((messages) => {
         const container = document.getElementById('message');
         messages.forEach((comment) => {
-            container.appendChild(getMessage(comment.message));
+            console.log(comment.score);
+            let display = comment.email + " : " + comment.message + " (comment sentiment : " + comment.score + " )"; 
+            container.appendChild(getMessage(display));
         });
     });
 }

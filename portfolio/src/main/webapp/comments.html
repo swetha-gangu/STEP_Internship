@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Swetha Gangu</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+  </head>
+  <body>
+
+    <div class="block">
+        <div class="typewriter"> <h1>comments</h1> </div>
+        <form id="comment_form" action="/data" method="POST">
+            <label for="comment">Comment:</label><br>
+            <input type="text" id="comment" name="comment"><br>
+            <input type="submit"/>
+        </form>
+        <div id="message"> </div>
+        <label for="max_comments">Max comments you would like to see: </label>
+        <select name="max_comments" id="max_comments" onchange="getContent()">
+            <option value="5" selected>5</option>
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="30">30</option>
+        </select>
+        <div class="button1" onclick="getContent()">show previous comments</div>
+        <div class="button1" onclick="deleteComments()">delete comments</div>
+        <div class="button1" onclick="window.location.href='/index.html';">
+            click here to go back to main page</div>
+    </div>
+
+  </body>
+</html>
